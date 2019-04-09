@@ -23,6 +23,9 @@ As a stretch goal, try adding the park's address to the results.
 This exercise should take about an hour to complete. If you're having trouble, 
 attend a Q&A session or reach out on Slack for help.
 
+
+
+
 park API = vTE1EGsrszBqHZ2CgxHarkZgBHmeodQTsCVvbrl9
 
 
@@ -57,9 +60,12 @@ function displayResults(responseJson) {
           <a href='${responseJson.data[i].url}'>${responseJson.data[i].url}</a>
           <p>${responseJson.data[i].description}</p>
           <p>${responseJson.data[i].directionsInfo}</p>
+          <p>${responseJson.data[i].states}</p>
           </li>
           `)
       };
+
+      
   //display the results section  
   $('#results').removeClass('hidden');
 };
@@ -67,11 +73,11 @@ function displayResults(responseJson) {
 function getParks(query, limit) {
   const params = {
     key: apiKey,
-    q: query,
     limit: limit-1,
-    
+    stateCode: query,
   };
   const queryString = formatQueryParams(params)
+  
   const url = searchURL + '?' + queryString;
 
   console.log(url);
